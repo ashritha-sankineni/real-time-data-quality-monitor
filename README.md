@@ -1,137 +1,78 @@
-# Real-Time Data Quality Monitor with LLM Explainability
+# Real-Time Data Quality Monitor
 
-An enterprise-style **data quality monitoring pipeline** built using **Spark + Delta Lake**, with clear separation of **Bronze / Silver / Gold layers** and optional **LLM-based explanations** for data issues.
+A **production-inspired data quality monitoring pipeline** built with **Spark and Delta Lake**, demonstrating how to detect, isolate, and measure data quality issues across Bronze, Silver, and Gold layers.
 
 This project is designed to be:
-- **Production-inspired**
-- **Runnable on Databricks Community Edition (with CE-compatible execution mode)**
-- **Adaptable to constrained environments**
-- **Portfolio-ready for Senior Data Engineer roles**
+- Runnable on **Databricks Community Edition**
+- Adaptable to **platform constraints**
+- Clear, modular, and **portfolio-ready**
 
 ---
 
-## Why this project?
+## Problem Statement
 
-Most data pipelines don’t fail loudly —  
-they fail quietly by letting **bad data** flow into analytics, dashboards, and ML models.
+Data pipelines rarely fail loudly.  
+They fail silently — by allowing bad data to flow downstream.
 
 This project demonstrates how to:
-- Detect data quality issues early
+- Detect bad data early
 - Enforce rule-based validation
 - Separate valid data from violations
-- Track quality metrics over time
-- Adapt architecture based on platform constraints
+- Track data quality health over time
 
 ---
 
-## Key Features
-
-- Synthetic retail event generation with injected data issues
-- Bronze / Silver / Gold data modeling using Delta Lake
-- Rule-based data quality checks:
-  - Missing required fields
-  - Negative values
-  - Quantity spikes
-  - Late-arriving data
-- Dedicated **violations table** with readable failure reasons
-- Daily data quality metrics for observability
-- Two execution modes:
-  - Ideal streaming-style design
-  - Databricks CE–compatible batch fallback
-
----
-
-## Architecture Overview
-
-### Conceptual Flow
+## High-Level Architecture
 
 ```text
 Event Generation
       ↓
-Bronze Events (raw + issues)
+Bronze Events
       ↓
 DQ Rules Engine
       ↓
-Silver Events (valid data)     DQ Violations (invalid data)
+Silver Events        DQ Violations
       ↓
-Gold Metrics (DQ observability)
-
-
+Gold DQ Metrics
 ```
-The architecture stays the same, even when execution mode changes.
 
-Execution Modes (Two-track Design)
+##Execution Overview
 
-This repo intentionally supports two execution paths.
+This repo supports two execution modes:
 
-Mode A — Ideal / Production-Style (Conceptual)
+Ideal / Production-style (conceptual streaming design)
 
-Use when your environment supports:
+Databricks CE–compatible (batch micro-ingestion fallback)
 
-File-based ingestion
+Implementation details are documented within each module.
 
-Structured Streaming
-
-Checkpointing
-
-Components:
-
-data/event_generator_cli.py
-
-streaming/bronze_ingest_streaming.py
-
-This mode demonstrates how the pipeline would run in a full-featured production environment.
-
-Mode B — Databricks CE Compatible (Implemented & Tested)
-
-Used when:
-
-DBFS root is disabled
-
-Local filesystem access is restricted
-
-Streaming triggers/checkpoints are unavailable
-
-Approach
-
-Generate events directly inside Spark
-
-Append small batches to simulate streaming
-
-Preserve Bronze / Silver / Gold contracts
-
-Components
-
-data/event_generator_spark.py
-
-streaming/bronze_ingest_batch.py
-
-dq_rules/apply_dq_rules.py
-
-This mirrors real-time behavior while remaining fully executable in constrained environments.
+##Repository Guide
 
 
-data/
-  event_generator_cli.py        # Local NDJSON generator
-  event_generator_spark.py      # Spark-native generator (CE-safe)
-  README.md
-  __init__.py
+| Folder        | Purpose                         |
+| ------------- | ------------------------------- |
+| `data/`       | Synthetic event generation      |
+| `streaming/`  | Bronze ingestion logic          |
+| `dq_rules/`   | Data quality rules & validation |
+| `dashboards/` | Gold metrics & SQL queries      |
+| `docs/`       | Platform constraints & notes    |
 
-streaming/
-  bronze_ingest_streaming.py    # Ideal streaming ingestion (conceptual)
-  bronze_ingest_batch.py        # CE-compatible batch ingestion
-  __init__.py
+##How to Get Started (Databricks CE)
 
-dq_rules/
-  apply_dq_rules.py             # Bronze → Silver + Violations
-  __init__.py
+Generate Bronze data (batch micro-ingestion)
 
-dashboards/
-  dq_metrics.sql                # Gold metrics & analysis queries
+Apply DQ rules to produce Silver + Violations
 
-assets/
-  architecture diagrams
-  screenshots
+Query Gold metrics for observability
 
-PLAN.md                         # 7-day build plan
-```
+➡️ See module-level READMEs for step-by-step instructions.
+
+##Why This Matters
+
+This project reflects real-world data engineering:
+
+Design stays stable
+
+Execution adapts to constraints
+
+Data contracts are preserved

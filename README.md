@@ -59,3 +59,30 @@ dq_rules/      - validation and anomaly rules
 llm_explainer/ - LLM prompts and explanations
 dashboards/    - SQL queries for metrics
 assets/        - diagrams and screenshots
+
+
+
+
+Planned Data Quality Rules
+
+Negative price detection
+
+Quantity spike anomalies
+
+Missing required fields
+
+Late-arriving data (freshness)
+
+How to Run
+
+Instructions will be added once the notebooks are implemented.
+
+Future Enhancements
+
+Alerting via Slack or email
+
+Schema drift detection
+
+Great Expectations integration
+
+Unity Catalog compatibility

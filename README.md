@@ -60,7 +60,7 @@ llm_explainer/ - LLM prompts and explanations
 dashboards/    - SQL queries for metrics
 assets/        - diagrams and screenshots
 
-
+---
 
 
 Planned Data Quality Rules
@@ -86,3 +86,4 @@ Schema drift detection
 Great Expectations integration
 
 Unity Catalog compatibility
+

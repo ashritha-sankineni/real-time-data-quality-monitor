@@ -59,6 +59,9 @@ Implementation details are documented within each module.
 | `dashboards/` | Gold metrics & SQL queries      |
 | `docs/`       | Platform constraints & notes    |
 
+- `data/` — Synthetic event generation (see [`data/README.md`](data/README.md))
+
+
 ## How to Get Started (Databricks CE)
 
 Generate Bronze data (batch micro-ingestion)

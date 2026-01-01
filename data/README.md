@@ -8,9 +8,9 @@ Generates newline-delimited JSON events for streaming demos.
 ## Run (local)
 ```bash
 python data/event_generator.py --events 200 --bad-rate 0.15 --sleep-ms 50
-```bash
 
-Injected Issues
+
+##**Injected Issues**
 
 NEGATIVE_PRICE
 

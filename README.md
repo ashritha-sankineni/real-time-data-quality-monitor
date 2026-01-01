@@ -43,16 +43,17 @@ This project demonstrates how to:
 
 ## Architecture Overview
 
-**Conceptual Flow**
+### Conceptual Flow
 
+```text
 Event Generation
-↓
+      ↓
 Bronze Events (raw + issues)
-↓
+      ↓
 DQ Rules Engine
-↓
-Silver Events (valid data) Violations (invalid data)
-↓
+      ↓
+Silver Events (valid data)     DQ Violations (invalid data)
+      ↓
 Gold Metrics (DQ observability)
 
 

@@ -105,26 +105,28 @@ This mirrors real-time behavior while remaining fully executable in constrained 
 
 ## Repository Structure
 
+```text
 data/
-event_generator_cli.py # Local NDJSON generator
-event_generator_spark.py # Spark-native generator (CE-safe)
-README.md
+  event_generator_cli.py        # Local NDJSON generator
+  event_generator_spark.py      # Spark-native generator (CE-safe)
+  README.md
+  __init__.py
 
 streaming/
-bronze_ingest_streaming.py # Ideal streaming ingestion (conceptual)
-bronze_ingest_batch.py # CE-compatible batch ingestion
-init.py
+  bronze_ingest_streaming.py    # Ideal streaming ingestion (conceptual)
+  bronze_ingest_batch.py        # CE-compatible batch ingestion
+  __init__.py
 
 dq_rules/
-apply_dq_rules.py # Bronze → Silver + Violations
-init.py
+  apply_dq_rules.py             # Bronze → Silver + Violations
+  __init__.py
 
 dashboards/
-dq_metrics.sql # Gold metrics & analysis queries
+  dq_metrics.sql                # Gold metrics & analysis queries
 
 assets/
-architecture diagrams
-screenshots
+  architecture diagrams
+  screenshots
 
 
 ---

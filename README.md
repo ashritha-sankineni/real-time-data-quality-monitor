@@ -36,7 +36,9 @@ Silver Events        DQ Violations
 Gold DQ Metrics
 ```
 
-##Execution Overview
+
+
+## Execution Overview
 
 This repo supports two execution modes:
 
@@ -46,7 +48,7 @@ Databricks CE–compatible (batch micro-ingestion fallback)
 
 Implementation details are documented within each module.
 
-##Repository Guide
+## Repository Guide
 
 
 | Folder        | Purpose                         |
@@ -57,7 +59,7 @@ Implementation details are documented within each module.
 | `dashboards/` | Gold metrics & SQL queries      |
 | `docs/`       | Platform constraints & notes    |
 
-##How to Get Started (Databricks CE)
+## How to Get Started (Databricks CE)
 
 Generate Bronze data (batch micro-ingestion)
 
@@ -67,7 +69,7 @@ Query Gold metrics for observability
 
 ➡️ See module-level READMEs for step-by-step instructions.
 
-##Why This Matters
+## Why This Matters
 
 This project reflects real-world data engineering:
 

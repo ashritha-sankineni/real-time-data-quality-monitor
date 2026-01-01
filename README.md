@@ -1,63 +1,57 @@
 # Real-Time Data Quality Monitor with LLM Explainability
 
-Enterprise-style real-time data quality monitoring built using Spark Structured Streaming and Delta Lake, with optional LLM-based explanations for detected data anomalies. Designed to run on Databricks Community Edition (free).
+An enterprise-style **data quality monitoring pipeline** built using **Spark + Delta Lake**, with clear separation of **Bronze / Silver / Gold layers** and optional **LLM-based explanations** for data issues.
+
+This project is designed to be:
+- **Production-inspired**
+- **Runnable on Databricks Community Edition**
+- **Adaptable to constrained environments**
+- **Portfolio-ready for Senior Data Engineer roles**
 
 ---
 
 ## Why this project?
 
-Most data pipelines don’t fail loudly.  
-They fail quietly by allowing bad data to flow into dashboards, ML models, and business decisions.
+Most data pipelines don’t fail loudly —  
+they fail quietly by letting **bad data** flow into analytics, dashboards, and ML models.
 
 This project demonstrates how to:
-- Detect data quality issues in real time
-- Persist quality metrics for observability
-- Explain issues in plain English using an LLM
+- Detect data quality issues early
+- Enforce rule-based validation
+- Separate valid data from violations
+- Track quality metrics over time
+- Adapt architecture based on platform constraints
 
 ---
 
-## Features
+## Key Features
 
-- Real-time ingestion using Spark Structured Streaming
-- Rule-based data quality checks (nulls, ranges, spikes)
-- Medallion architecture (Bronze → Silver → Gold)
-- Delta Lake storage
-- Data quality metrics and violations table
-- LLM-based explanations (optional)
-
----
-
-## Architecture
-
-![Architecture](assets/architecture.png)
-
-Flow:
-- Bronze: Raw streaming ingestion
-- Silver: Valid records and quarantined invalid records
-- Gold: Aggregated data quality metrics
-- LLM Explainer: Human-readable explanations
+- Synthetic retail event generation with injected data issues
+- Bronze / Silver / Gold data modeling using Delta Lake
+- Rule-based data quality checks:
+  - Missing required fields
+  - Negative values
+  - Quantity spikes
+  - Late-arriving data
+- Dedicated **violations table** with readable failure reasons
+- Daily data quality metrics for observability
+- Two execution modes:
+  - Ideal streaming-style design
+  - Databricks CE–compatible batch fallback
 
 ---
 
-## Tech Stack
+## Architecture Overview
 
-- Databricks Community Edition
-- Spark Structured Streaming
-- Delta Lake
-- Python
-- SQL
-- Optional LLM: OpenAI, Groq, or HuggingFace
+**Conceptual Flow**
 
----
+Event Generation
+↓
+Bronze Events (raw + issues)
+↓
+DQ Rules Engine
+↓
+Silver Events (valid data) Violations (invalid data)
+↓
+Gold Metrics (DQ observability)
 
-## Repository Structure
-
-```text
-data/          - synthetic event generator
-streaming/     - ingestion and transformations
-dq_rules/      - validation and anomaly rules
-llm_explainer/ - LLM prompts and explanations
-dashboards/    - SQL queries for metrics
-assets/        - diagrams and screenshots
-
----

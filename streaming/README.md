@@ -66,9 +66,9 @@ append_micro_batch(spark, n_rows=500, bad_rate=0.15)
 
 This produces the managed table:bronze_events
 ## Bronze Data Characteristics
-Contains all raw events
-Includes intentionally bad data
-Includes late-arriving events
+Contains all raw events.
+Includes intentionally bad data.
+Includes late-arriving events.
 No records are dropped or corrected at this stage
 
 Validation occurs downstream in dq_rules/.

@@ -62,9 +62,10 @@ bronze_ingest_batch.py
 ```python
 init_bronze_table(spark)
 append_micro_batch(spark, n_rows=500, bad_rate=0.15)
-
+```
 
 This produces the managed table:bronze_events
+
 Bronze Data Characteristics
 
 Contains all raw events

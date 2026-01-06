@@ -1,24 +1,27 @@
 # Real-Time Data Quality Monitor
 
-A **production-inspired data quality monitoring pipeline** built with **Spark and Delta Lake**, demonstrating how to detect, isolate, and measure data quality issues across Bronze, Silver, and Gold layers.
+A **production-inspired data quality monitoring pipeline** built with **Spark and Delta Lake**, demonstrating how to detect, isolate, and measure data quality issues across **Bronze, Silver, and Gold** layers.
+
+The project also includes an **optional LLM-based explainability layer**, implemented as a **decoupled external service** to accommodate platform constraints.
 
 This project is designed to be:
 - Runnable on **Databricks Community Edition**
-- Adaptable to **platform constraints**
-- Clear, modular, and **portfolio-ready**
+- Adaptable to **real-world platform constraints**
+- Modular, readable, and **portfolio-ready**
 
 ---
 
 ## Problem Statement
 
 Data pipelines rarely fail loudly.  
-They fail silently — by allowing bad data to flow downstream.
+They fail silently — by allowing **bad data** to flow downstream into analytics, dashboards, and ML models.
 
 This project demonstrates how to:
 - Detect bad data early
 - Enforce rule-based validation
 - Separate valid data from violations
 - Track data quality health over time
+- Communicate issues clearly to both technical and non-technical stakeholders
 
 ---
 
@@ -35,49 +38,40 @@ Silver Events        DQ Violations
       ↓
 Gold DQ Metrics
 ```
-
-
+The architecture remains consistent, even when execution details change due to platform limitations.
 
 ## Execution Overview
 
-This repo supports two execution modes:
+This repository intentionally supports two execution modes:
 
-Ideal / Production-style (conceptual streaming design)
+### Mode A — Ideal / Production-Style (Conceptual)
 
-Databricks CE–compatible (batch micro-ingestion fallback)
+Structured Streaming ingestion
 
-Implementation details are documented within each module.
+File-based sources
+
+Continuous processing with checkpoints
+
+Included to demonstrate how this pipeline would run in a fully featured production environment.
+
+### Mode B — Databricks Community Edition Compatible (Implemented)
+
+Batch micro-ingestion
+
+Spark-native event generation
+
+No reliance on DBFS root or streaming triggers
+
+This mode is fully runnable in Databricks CE and preserves the same data contracts and layer boundaries.
+
+Implementation details are documented in the module-level READMEs.
 
 ## Repository Guide
-
-
-| Folder        | Purpose                         |
-| ------------- | ------------------------------- |
-| `data/`       | Synthetic event generation      |
-| `streaming/`  | Bronze ingestion logic          |
-| `dq_rules/`   | Data quality rules & validation |
-| `dashboards/` | Gold metrics & SQL queries      |
-| `docs/`       | Platform constraints & notes    |
-
-- `data/` — Synthetic event generation (see [`data/README.md`](data/README.md))
-
-
-## How to Get Started (Databricks CE)
-
-Generate Bronze data (batch micro-ingestion)
-
-Apply DQ rules to produce Silver + Violations
-
-Query Gold metrics for observability
-
-➡️ See module-level READMEs for step-by-step instructions.
-
-## Why This Matters
-
-This project reflects real-world data engineering:
-
-Design stays stable
-
-Execution adapts to constraints
-
-Data contracts are preserved
+| Folder                                      | Purpose                                                           |
+| ------------------------------------------- | ----------------------------------------------------------------- |
+| [`data/`](data/README.md)                   | Synthetic retail event generation (local + Spark-native)          |
+| [`streaming/`](streaming/README.md)         | Bronze ingestion logic (conceptual streaming + CE batch fallback) |
+| [`dq_rules/`](dq_rules/README.md)           | Rule-based data quality validation (Bronze → Silver + Violations) |
+| [`dashboards/`](dashboards/README.md)       | Gold metrics and observability SQL                                |
+| [`llm_explainer/`](llm_explainer/README.md) | External LLM-based explainability (Groq)                          |
+| `docs/`                                     | Platform constraints, design notes, and decisions                 |

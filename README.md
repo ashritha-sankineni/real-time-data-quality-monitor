@@ -38,13 +38,14 @@ Silver Events        DQ Violations
       ↓
 Gold DQ Metrics
 ```
+
 The architecture remains consistent, even when execution details change due to platform limitations.
 
 ## Execution Overview
 
-This repository intentionally supports two execution modes:
+This repository intentionally supports two execution modes.
 
-### Mode A — Ideal / Production-Style (Conceptual)
+#### Mode A — Ideal / Production-Style (Conceptual)
 
 Structured Streaming ingestion
 
@@ -54,7 +55,7 @@ Continuous processing with checkpoints
 
 Included to demonstrate how this pipeline would run in a fully featured production environment.
 
-### Mode B — Databricks Community Edition Compatible (Implemented)
+#### Mode B — Databricks Community Edition Compatible (Implemented)
 
 Batch micro-ingestion
 
@@ -74,9 +75,8 @@ Implementation details are documented in the module-level READMEs.
 | [`dq_rules/`](dq_rules/README.md)           | Rule-based data quality validation (Bronze → Silver + Violations) |
 | [`dashboards/`](dashboards/README.md)       | Gold metrics and observability SQL                                |
 | [`llm_explainer/`](llm_explainer/README.md) | External LLM-based explainability (Groq)                          |
-| `docs/`                                     | Platform constraints, design notes, and decisions                 |
 
-## How to Get Started (Databricks CE)
+## How to Get Started (Databricks Community Edition)
 
 Generate Bronze data
 Run the batch micro-ingestion workflow
@@ -87,16 +87,45 @@ Produce Silver data and DQ violations
 → See: dq_rules/README.md
 
 Analyze Gold metrics
-Query daily DQ health and trends
+Query daily data quality health and trends
 → See: dashboards/README.md
 
 (Optional) Generate LLM-based summaries
 Run the external Groq explainer locally
 → See: llm_explainer/README.md
 
+## LLM Explainability (Optional, Decoupled)
+
+Due to outbound network restrictions in Databricks Community Edition, LLM integration is implemented as a decoupled external component.
+
+Spark handles deterministic detection and enforcement
+
+An external script uses an LLM (Groq) to generate:
+
+Plain-English incident summaries
+
+Technical triage checklists
+
+Recommended actions
+
+This mirrors real-world enterprise architecture, where LLMs are used for explainability and communication, not enforcement.
+
+### Why This Matters
+
+This project reflects how real data platforms are built and operated:
+
+Architecture is stable
+
+Execution adapts to constraints
+
+Data contracts are preserved
+
+LLMs are used responsibly and cost-effectively
+
+The result is a realistic, end-to-end example of modern data quality engineering.
 
 ### Author
 
-#### Ashritha Sankineni
-Senior Data Engineer
-Spark • Delta Lake • Databricks • Data Quality • Observability • LLMs
+####Ashritha Sankineni
+  Senior Data Engineer
+  Spark • Delta Lake • Data Quality • Observability • LLMs

@@ -59,3 +59,41 @@ Best practice: send aggregated metrics to the LLM (cheap + low risk) rather than
 zsh/bash
 export GROQ_API_KEY="YOUR_KEY"
 ```
+  If you use fish shell, use:
+  ```
+set -x GROQ_API_KEY "YOUR_KEY"
+
+```
+
+3) Run the script
+
+From inside the llm_explainer/ folder:
+```
+python3 groq_explain_summary.py --input sample_dq_summary.csv
+```
+
+Or from the repo root:
+```
+python3 llm_explainer/groq_explain_summary.py --input llm_explainer/sample_dq_summary.csv
+```
+
+# Cost notes
+
+This script is designed to be low-cost by prompting on aggregated summaries (top rules + counts).
+For typical usage, costs are usually pennies per run depending on model and prompt size.
+
+# Security / Data handling
+
+Do not send sensitive data to any external LLM provider.
+
+Prefer aggregated counts and trends over raw records.
+
+Keep API keys out of source control (use environment variables).
+
+# Enhancements
+
+Write output to a file (Markdown) for Slack/Jira posting
+
+Add trend context (last 7 days) to the prompt
+
+Add rule-specific playbook links per violation reason

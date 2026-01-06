@@ -77,12 +77,12 @@ Or from the repo root:
 python3 llm_explainer/groq_explain_summary.py --input llm_explainer/sample_dq_summary.csv
 ```
 
-# Cost notes
+## Cost notes
 
 This script is designed to be low-cost by prompting on aggregated summaries (top rules + counts).
 For typical usage, costs are usually pennies per run depending on model and prompt size.
 
-# Security / Data handling
+## Security / Data handling
 
 Do not send sensitive data to any external LLM provider.
 
@@ -90,7 +90,7 @@ Prefer aggregated counts and trends over raw records.
 
 Keep API keys out of source control (use environment variables).
 
-# Enhancements
+## Enhancements
 
 Write output to a file (Markdown) for Slack/Jira posting
 

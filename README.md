@@ -126,6 +126,6 @@ The result is a realistic, end-to-end example of modern data quality engineering
 
 ### Author
 
-####Ashritha Sankineni
+#### Ashritha Sankineni
   Senior Data Engineer
   Spark • Delta Lake • Data Quality • Observability • LLMs

@@ -49,6 +49,13 @@ business_date,violation_reasons,violation_count
 2025-12-27,LATE_EVENT_TIME,29
 
 ```
-export the result to CSV (copy/paste download) and run the script locally.
+
+Export the result to CSV (copy/paste download) and run the script locally.
 
 Best practice: send aggregated metrics to the LLM (cheap + low risk) rather than sending raw row-level data.
+
+2) Set your Groq API key
+```
+zsh/bash
+export GROQ_API_KEY="YOUR_KEY"
+```

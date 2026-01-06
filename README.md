@@ -75,3 +75,28 @@ Implementation details are documented in the module-level READMEs.
 | [`dashboards/`](dashboards/README.md)       | Gold metrics and observability SQL                                |
 | [`llm_explainer/`](llm_explainer/README.md) | External LLM-based explainability (Groq)                          |
 | `docs/`                                     | Platform constraints, design notes, and decisions                 |
+
+## How to Get Started (Databricks CE)
+
+Generate Bronze data
+Run the batch micro-ingestion workflow
+→ See: streaming/README.md
+
+Apply Data Quality rules
+Produce Silver data and DQ violations
+→ See: dq_rules/README.md
+
+Analyze Gold metrics
+Query daily DQ health and trends
+→ See: dashboards/README.md
+
+(Optional) Generate LLM-based summaries
+Run the external Groq explainer locally
+→ See: llm_explainer/README.md
+
+
+### Author
+
+#### Ashritha Sankineni
+Senior Data Engineer
+Spark • Delta Lake • Databricks • Data Quality • Observability • LLMs
